@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>scroll.js - Basic Example</title>
+  <meta name="description" content="scroll.js - Basic Example">
+  <meta name="author" content="Pryme8">
+  <style>
+	html, body {
+	  min-height: 100%;
+	  padding: 0;
+	  margin: 0;
+	  -webkit-box-sizing: border-box;
+	  box-sizing: border-box;
+	}
+
+	body *, body *:before, body *:after {
+	  -webkit-box-sizing: inherit;
+	  box-sizing: inherit;
+	}  
+	
+	.abs-center{
+		position:absolute;
+		left:50%;
+		top:50%;
+		-webkit-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+	
+	.section{
+		display:block;
+		position:relative;
+		width:100%;
+	}
+	
+	.grad{
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#b5bdc8+0,828c95+36,28343b+100;Grey+Black+3D */
+		background: rgb(181,189,200); /* Old browsers */
+		background: -moz-linear-gradient(top,  rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+	}	
+	
+  </style>
+  <script src="../src/scroll.js"></script>
+</head>
+<body>
+
+	<div class='section grad' style='height:calc(100vh + 120px);'>	
+	</div>
+	<div class='section' style='height:100vh; position:fixed; top:0; left:0;'>	
+		<div class='abs-center' style='font-size:32px;'>
+			<center><span id='current-value'>0</span>%</center>			
+		</div>
+	</div>
+	
+<script>
+	window.addEventListener('DOMContentLoaded', ()=>{	 
+		let scroll = new SCROLL()
+		console.log("Scroll Started!", scroll)
+		
+		var flag = scroll.addFlag(document.getElementById('current-value'), {
+			start:0,
+			duration:120,
+			callback: (value, target)=>{
+				target.innerHTML = (value*100)
+			},
+			startDirty : true,
+			debug:true
+		})
+		
+		console.log(flag)		
+	})
+</script>
+</body>
+</html>
