@@ -4,7 +4,7 @@ Universal DOM Scrolling Animation Callback Engine
 ## Installation
 Include the __core__ library in your Web Document:
 ```html
-<script src="js/scrollmagic/uncompressed/ScrollMagic.js"></script>
+<script src="scroll.js"></script>
 ```
 And you're all set!
 
