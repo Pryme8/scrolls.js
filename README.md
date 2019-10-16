@@ -12,9 +12,9 @@ This is not for running on a node, but rather should have its src included throu
 
 Get from a CDN
 
-Full [https://cdn.jsdelivr.net/gh/Pryme8/scroll.js/src/scroll.js](https://cdn.jsdelivr.net/gh/Pryme8/scroll.js/src/scroll.js)
+Full [https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scroll.js](https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scroll.js)
 
-Min [https://cdn.jsdelivr.net/gh/Pryme8/scroll.js/src/scroll.min.js](https://cdn.jsdelivr.net/gh/Pryme8/scroll.js/src/scroll.min.js)
+Min [https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scroll.min.js](https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scroll.min.js)
 
 
 ## Installation
