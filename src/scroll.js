@@ -1,6 +1,6 @@
 "use strict"; 
 
-class SCROLL{
+class Scroll{
 	constructor(){
 		this._lastPos = 0
 		this._flags = []
@@ -10,13 +10,15 @@ class SCROLL{
 	scrollTop(){
 		return Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
 	}
+	
 	addFlag(target, args = {}){
 		console.log(args)
-		let flag = new SCROLL.FLAG(target, args, this)
+		let flag = new Scroll.Flag(target, args, this)
 		this.flags.push(flag)
 		return flag
 		
 	}
+	
 	checkFlags(){
 		 for(let i=0; i<this.flags.length; i++){
             let f = this.flags[i]
@@ -45,6 +47,7 @@ class SCROLL{
             }
         }     
 	}
+	
 	step(timestamp){
 		let st = this.scrollTop()
 		if(this.lastPos != st){
@@ -87,7 +90,7 @@ class SCROLL{
 }
 
 
-SCROLL.FLAG = class{
+Scroll.Flag = class{
 	constructor(target, args = {}, parent){
 		this._parent = parent
 		this._target = target

@@ -7,10 +7,13 @@ You can grab the js file from the __GitHub__ src folder
 
 Do an __CLI__ install
 > npm i @pryme8/scroll.js
+
 This is not for running on a node, but rather should have its src included through the following install directions.
 
 Get from a CDN
+
 Full [https://cdn.jsdelivr.net/gh/Pryme8/scroll.js/src/scroll.js](https://cdn.jsdelivr.net/gh/Pryme8/scroll.js/src/scroll.js)
+
 Min [https://cdn.jsdelivr.net/gh/Pryme8/scroll.js/src/scroll.min.js](https://cdn.jsdelivr.net/gh/Pryme8/scroll.js/src/scroll.min.js)
 
 
@@ -26,7 +29,7 @@ Initialize the Scroll Object
 ```html
 <script>
 window.addEventListener('DOMContentLoaded', ()=>{	 
-		let scroll = new SCROLL()
+		let scroll = new Scroll()
 		console.log("Scroll Started!", scroll)
 </script>
 ```
