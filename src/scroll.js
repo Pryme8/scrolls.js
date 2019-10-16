@@ -1,3 +1,5 @@
+"use strict"; 
+
 class SCROLL{
 	constructor(){
 		this._lastPos = 0
@@ -56,7 +58,6 @@ class SCROLL{
 	}
 	
 	start(){
-		window.scrollTop = this.scrollTop()
 		var self = this
         window.requestAnimationFrame(()=>{self.step()})
     }  
