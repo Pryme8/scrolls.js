@@ -1,6 +1,15 @@
 # 📜  scrolls.js  📜
 Universal DOM Scrolling Animation Callback Engine
 
+## Download
+You can grab the js file from the __GitHub__ src folder
+[https://raw.githubusercontent.com/Pryme8/scrolls.js/master/src/scroll.js](https://raw.githubusercontent.com/Pryme8/scrolls.js/master/src/scroll.js)
+
+Do an __CLI__ install
+> npm i @pryme8/scroll.js
+
+
+
 ## Installation
 Include the __core__ library in your Web Document:
 ```html

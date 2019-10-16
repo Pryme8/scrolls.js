@@ -1,0 +1,23 @@
+{
+  "name": "@pryme8/scroll.js",
+  "version": "1.0.0",
+  "description": "Universal DOM Scrolling Animation Callback Engine",
+  "main": "scroll.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pryme8/scrolls.js.git"
+  },
+  "keywords": [
+    "Scroll",
+    "Animation"
+  ],
+  "author": "Pryme8",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Pryme8/scrolls.js/issues"
+  },
+  "homepage": "https://github.com/Pryme8/scrolls.js#readme"
+}
