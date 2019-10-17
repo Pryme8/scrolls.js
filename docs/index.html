@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>scroll.js - Basic Example</title>
+  <meta name="description" content="scroll.js - Basic Example">
+  <meta name="author" content="Pryme8">
+  <style>
+	html, body {
+	  min-height: 100%;
+	  height:600vh;
+	  padding: 0;
+	  margin: 0;
+	  -webkit-box-sizing: border-box;
+	  box-sizing: border-box;
+	}
+
+	body *, body *:before, body *:after {
+	  -webkit-box-sizing: inherit;
+	  box-sizing: inherit;
+	}  
+	
+	.abs-center{
+		position:absolute;
+		left:50%;
+		top:50%;
+		-webkit-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+	
+	.section{
+		display:block;
+		position:relative;
+		width:100%;
+	}
+	
+	.grad{
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#b5bdc8+0,828c95+36,28343b+100;Grey+Black+3D */
+		background: rgb(181,189,200); /* Old browsers */
+		background: -moz-linear-gradient(top,  rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+	}
+	
+	#text-0-underline{
+		display:block;
+		position:absolute;
+		height:3px;
+		width:0px;
+		background-color:white;
+		bottom:-6px;
+		left:50%;
+		-webkit-transform: translate(-50%, 0);
+		-ms-transform: translate(-50%, 0);
+		transform: translate(-50%, 0);
+	
+	}
+	
+	#waves{
+		display:block;
+		width:100%;
+		height:100%;
+		position:absolute;
+		left:0;
+		top:0;		
+		background-image: url(assets/waves.png);
+		background-repeat: repeat-x;
+		opacity:0.65;
+	}
+	
+	#water-base{
+		opacity:0.65;
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#00bff3+0,05abe0+13,02224c+89,000a1e+100 */
+		background: rgb(0,191,243); /* Old browsers */
+		background: -moz-linear-gradient(top,  rgba(0,191,243,1) 0%, rgba(5,171,224,1) 13%, rgba(2,34,76,1) 89%, rgba(0,10,30,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top,  rgba(0,191,243,1) 0%,rgba(5,171,224,1) 13%,rgba(2,34,76,1) 89%,rgba(0,10,30,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom,  rgba(0,191,243,1) 0%,rgba(5,171,224,1) 13%,rgba(2,34,76,1) 89%,rgba(0,10,30,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bff3', endColorstr='#000a1e',GradientType=0 ); /* IE6-9 */	
+	}
+	
+	#cloud-base{
+		height:80vh;
+		width:100%; 
+		overflow:hidden;
+		position:absolute;
+		top:0; left:0;
+	}
+	
+	.cloud{
+		display:block;
+		width:256px;
+		height:140px;
+		position:absolute;
+		background-image: url(assets/clouds.png);
+		background-repeat: no-repeat;
+		background-size: 100%;
+		opacity:0.85;
+	}
+
+#sun-wrap{
+	display:block;
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:200vh;
+	overflow:hidden;
+}	
+	
+#sun-block{
+	display:block;
+	position:absolute;
+	left:-50vh;
+	top:-50vh;
+	width:200vh;
+	height:200vh;
+}	
+	
+	/*https://codepen.io/mgkOV/pen/qzNegg*/
+.sun { 
+  position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	margin: auto;  
+	width:30vh;
+	height:30vh;
+	border-radius:50%;	
+	background:white;
+	opacity:0.9;			
+	box-shadow: 0px 0px 40px 15px white;  
+}
+
+
+.ray-block{
+	position: absolute;
+    width: 120vh;
+    height: 120vh;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    margin-left: -60vh;
+    margin-top: -60vh;
+}
+
+#rays1{
+	-webkit-transform: rotate(193deg) scale(0.8);
+}
+
+#rays2{
+	-webkit-transform: rotate(12deg) scale(0.4);
+}
+
+.ray {  
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+	background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%); 
+    border-radius:80% 80% 0 0;
+    position:absolute;
+    opacity:0.1;
+	display:block;
+	left:50%;
+	top:50%;
+	transform-origin:top center;
+}
+
+#ray0 {    
+   height:60vh;
+   width:3vh;
+   margin-left:-1.5vh;
+   -webkit-transform: rotate(180deg);
+}
+
+#ray1 {    
+   height:55vh;
+   width:6vh;
+   margin-left:-3vh;
+   -webkit-transform: rotate(32deg);
+}
+
+#ray2 {    
+   height:80vh;
+   width:8vh;
+   margin-left:-4vh;
+   -webkit-transform: rotate(66deg);
+}
+
+#ray3 {    
+   height:92vh;
+   width:4vh;
+   margin-left:-2vh;
+   -webkit-transform: rotate(206deg);
+}
+
+#ray4 {    
+   height:76vh;
+   width:9vh;
+   margin-left:-4.5vh;
+   -webkit-transform: rotate(143deg);
+}
+
+#ray5 {    
+   height:74vh;
+   width:6.5vh;
+   margin-left:-3.25vh;
+   -webkit-transform: rotate(332deg);
+}
+
+#ray6 {    
+   height:65vh;
+   width:7vh;
+   margin-left:-3.5vh;
+   -webkit-transform: rotate(264deg);
+}
+
+#ray7 {    
+   height:85vh;
+   width:3vh;
+   margin-left:-1.5vh;
+   -webkit-transform: rotate(124deg);
+}
+
+#ray8 {    
+   height:82vh;
+   width:3.5vh;
+   margin-left:-1.75vh;
+   -webkit-transform: rotate(290deg);
+}
+
+#ray9 {    
+   height:98vh;
+   width:5vh;
+   margin-left:-2.5vh;
+   -webkit-transform: rotate(225deg);
+}
+
+#ray10 {    
+   height:76vh;
+   width:2vh;
+   margin-left:-1vh;
+   -webkit-transform: rotate(43deg);
+}
+
+#ray11 {    
+   height:96vh;
+   width:2.5vh;
+   margin-left:-1.25vh;
+   -webkit-transform: rotate(100deg);
+}
+
+
+
+.fish{
+	display:block;
+	position:absolute;
+	white-space: nowrap;
+}
+
+.fish-head{
+	width: 50%;
+    overflow: hidden;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+	transform-origin:right center;
+}
+
+.fish-tail{
+	width: 50%;
+    overflow: hidden;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    margin-left: -4px;
+	transform-origin:left center;
+}
+
+.fish-tail img{
+	margin-left: -100%;
+}
+
+
+#main-content{
+	display:block;
+	background:rgba(0,0,0,0.45);
+	position:absolute;
+	bottom:-6px;
+	left:50%;
+	-webkit-transform: translate(-50%, 100%);
+	-ms-transform: translate(-50%, 100%);
+	transform: translate(-50%, 100%);
+	text-align:center;
+	overflow:hidden;
+	white-space:nowrap;
+}
+
+#text-1{
+	font-weight:bold;
+	font-size:0.8em;
+	opacity:0;
+}
+
+#text-2{
+	font-weight:light;
+	font-size:0.7em;
+	opacity:0;
+}
+
+.bubble{
+	display:block;
+	position:absolute;
+	width:62px;
+	height:62px;
+	background-image: url(assets/bubble.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	opacity:0.5;
+}
+
+	
+  </style>
+  <script src="../src/scroll.js"></script>
+</head>
+<body>
+
+<div 
+	class='section grad' 
+	style='height:calc(600vh); position:absolute;'>	
+</div>
+
+<div id='sun-wrap'>
+	<div id='sun-block'>
+	<div class="sun">		
+	</div>
+
+	<div class="ray-block" id='rays0' startR='0' endR='63' scaleValue='1'>
+		<div class="ray" id="ray0"></div>
+		<div class="ray" id="ray1"></div>
+		<div class="ray" id="ray2"></div>
+		<div class="ray" id="ray3"></div>
+		<div class="ray" id="ray4"></div>
+		<div class="ray" id="ray5"></div>
+		<div class="ray" id="ray6"></div>
+		<div class="ray" id="ray7"></div>
+		<div class="ray" id="ray8"></div>
+		<div class="ray" id="ray9"></div>
+		<div class="ray" id="ray10"></div>
+		<div class="ray" id="ray11"></div>
+	</div>
+	
+	<div class="ray-block" id='rays1' startR='192' endR='60' scaleValue='0.8'>
+		<div class="ray" id="ray0"></div>
+		<div class="ray" id="ray1"></div>
+		<div class="ray" id="ray2"></div>
+		<div class="ray" id="ray3"></div>
+		<div class="ray" id="ray4"></div>
+		<div class="ray" id="ray5"></div>
+		<div class="ray" id="ray6"></div>
+		<div class="ray" id="ray7"></div>
+		<div class="ray" id="ray8"></div>
+		<div class="ray" id="ray9"></div>
+		<div class="ray" id="ray10"></div>
+		<div class="ray" id="ray11"></div>
+	</div>
+	
+	<div class="ray-block" id='rays2' startR='280' endR='330' scaleValue='0.32'>
+		<div class="ray" id="ray0"></div>
+		<div class="ray" id="ray1"></div>
+		<div class="ray" id="ray2"></div>
+		<div class="ray" id="ray3"></div>
+		<div class="ray" id="ray4"></div>
+		<div class="ray" id="ray5"></div>
+		<div class="ray" id="ray6"></div>
+		<div class="ray" id="ray7"></div>
+		<div class="ray" id="ray8"></div>
+		<div class="ray" id="ray9"></div>
+		<div class="ray" id="ray10"></div>
+		<div class="ray" id="ray11"></div>
+	</div>
+	
+	</div>
+</div>
+
+
+<div id='cloud-base'
+	class='section' >
+	
+	<div class='cloud' id='cloud3'
+	style='top:80px; width:220px; height:120px; opacity:0.62;' 
+	startX='620' endX='800'></div>
+	
+	<div class='cloud' id='cloud0'
+	style='top:120px; opacity:0.6;' 
+	startX='0' endX='300'></div>
+	
+	<div class='cloud' id='cloud1'
+	style='top:120px; width:320px; height:200px;  opacity:0.75;' 
+	startX='1200' endX='600'></div>
+	
+	<div class='cloud' id='cloud2'
+	style='top:130px; width:420px; height:300px;' 
+	startX='420' endX='1000'></div>
+	
+
+	
+</div>
+
+<div 
+	class='section'
+	style='height:100vh'>
+	<div id='text-0'
+		class='item abs-center'		
+		style='font-size:62px; color:white; opacity:0.5; z-index:101;'>
+		Advanced Usage
+		<div id='text-0-underline'></div>
+		<div id='main-content'>
+			<div id='text-1'>
+				We are starting to dive deep!
+			</div>
+			<div id='text-2'>
+				this is just the beginning...
+			</div>
+		</div>		
+	</div>	
+</div>
+
+
+
+<div class='section' style='height:128px; margin-top:-128px;'>
+	<div id='waves'>
+	
+	</div>
+</div>
+
+<div id='water-base'
+	class='section' 
+	style='height:calc(500vh); overflow:hidden;'>	
+	
+	<div class='fish' id='redfish0' style='width:280px; height:80px; top:6px;' startX='80' endX='10' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish0.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish0.png' /></div>	
+	</div>
+	
+	<div class='fish' id='redfish1' style='width:280px; height:80px; top:32px; -webkit-transform:scale(0.8)' startX='86' endX='12' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish1.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish1.png' /></div>	
+	</div>
+	
+	<div class='fish' id='redfish2' style='width:280px; height:80px; top:112px; -webkit-transform:scale(1.1)' startX='72' endX='6' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish1.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish1.png' /></div>	
+	</div>
+	
+	<div class='fish' id='bluefish0' style='width:320px; height:140px; top:260px; -webkit-transform:scale(0.6)  scaleX(-1);' startX='2' endX='50' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish2.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish2.png' /></div>	
+	</div>
+	
+	<div class='fish' id='bluefish1' style='width:320px; height:140px; top:310px; -webkit-transform:scale(0.8)  scaleX(-1);' startX='-6' endX='60' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish2.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish2.png' /></div>	
+	</div>
+	
+	<div class='fish' id='bluefish2' style='width:320px; height:140px; top:360px; -webkit-transform:scale(1)  scaleX(-1);' startX='12' endX='110' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish2.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish2.png' /></div>	
+	</div>
+	
+	<div class='fish' id='bluefish3' style='width:320px; height:140px; top:180px; -webkit-transform:scale(0.9)  scaleX(-1);' startX='40' endX='120' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish3.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish3.png' /></div>	
+	</div>
+	
+	<div class='fish' id='redfish3' style='width:280px; height:80px; top:460px; -webkit-transform:scale(0.6)' startX='110' endX='32' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish1.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish1.png' /></div>	
+	</div>
+	
+	<div class='fish' id='longfish0' style='width:400px; height:150px; top:660px; -webkit-transform:scale(0.6) scaleX(-1.2);' startX='20' endX='60' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish7.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish7.png' /></div>	
+	</div>
+	
+	<div class='fish' id='longfish1' style='width:400px; height:150px; top:720px; -webkit-transform:scale(0.8) scaleX(-1.1);' startX='5' endX='80' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish7.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish7.png' /></div>	
+	</div>
+	
+	<div class='fish' id='pufffish0' style='width:400px; height:150px; top:860px; -webkit-transform:scaleX(-1);' startX='12' endX='20' >
+		<div class='fish-head' id='fish-head0'><img src='./assets/fish5.png' /></div>
+		<div class='fish-tail' id='fish-tail0'><img src='./assets/fish5.png' /></div>	
+	</div>
+	
+</div>
+
+
+	
+<script>
+	window.addEventListener('DOMContentLoaded', ()=>{	
+		let scroll = new Scroll()
+		console.log("Scroll Started!", scroll)
+		
+		//Window Height Normalization:
+		var w=window,
+		d=document,
+		e=d.documentElement,
+		g=d.getElementsByTagName('body')[0],
+		x=w.innerWidth||e.clientWidth||g.clientWidth,
+		y=w.innerHeight||e.clientHeight||g.clientHeight;
+		
+		const viewHeight = ()=>{
+			return y
+		}
+		
+		var titleFade = scroll.addFlag(document.getElementById('text-0'), {
+			start:0,
+			duration:(viewHeight()*0.5)-86,
+			callback: (value, target)=>{
+				var opacity = value*0.9
+				target.style.opacity = opacity
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var titleLock = scroll.addFlag(document.getElementById('text-0'), {
+			start:titleFade.range[1],
+			duration:0,
+			callback: (value, target)=>{
+				if(value>0){
+					target.style.position = 'fixed'
+					target.style.top = '86px'
+				}else{
+					target.style.position = 'absolute'
+					target.style.top = '50%'
+				}
+				
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var waveScroll = scroll.addFlag(document.getElementById('waves'), {
+			start:0,
+			duration:viewHeight(),
+			callback: (value, target)=>{
+				target.style['background-position']	= (value*-600)+'px 50%'			
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var underLine = scroll.addFlag(document.getElementById('text-0-underline'), {
+			start:viewHeight()-320,
+			duration:200,
+			callback: (value, target)=>{
+				target.style.width = 'calc('+Math.round(value*100)+'vw - 2em)'
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		
+		function cloudScrolls(value, target){
+			var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+			var lerp = v0 + value * (v1 - v0)
+			target.style.left = lerp+'px'	
+		}
+		
+		var cloud0 = scroll.addFlag(document.getElementById('cloud0'), {
+			start:0,
+			duration:viewHeight()*0.6,
+			callback: cloudScrolls,
+			startDirty : true,
+			//debug:true
+		})
+		
+		var cloud1 = scroll.addFlag(document.getElementById('cloud1'), {
+			start:0,
+			duration:viewHeight()*0.6,
+			callback: cloudScrolls,
+			startDirty : true,
+			//debug:true
+		})
+		
+		var cloud2 = scroll.addFlag(document.getElementById('cloud2'), {
+			start:0,
+			duration:viewHeight()*0.6,
+			callback: cloudScrolls,
+			startDirty : true,
+			//debug:true
+		})
+				
+		var cloud3 = scroll.addFlag(document.getElementById('cloud3'), {
+			start:0,
+			duration:viewHeight()*0.6,
+			callback: cloudScrolls,
+			startDirty : true,
+			//debug:true
+		})
+		
+		
+		var sunRays = scroll.addFlag(document.getElementById('sun-wrap'), {
+			start:0,
+			duration:viewHeight()+100,
+			callback: (value, target)=>{
+				let rays = target.querySelectorAll('.ray-block')
+				rays.forEach((ray)=>{				
+					var v0 = parseFloat(ray.getAttribute('startR')), v1 = parseFloat(ray.getAttribute('endR'))			
+					var lerp = v0 + value * (v1 - v0)
+					var s = ray.getAttribute('scaleValue')
+					ray.style.webkitTransform = 'rotate('+lerp+'deg) scale('+s+')'				
+				})	
+			},
+			startDirty : true,
+			//debug:true
+		})
+				
+		
+		var fishSwim0 = scroll.addFlag(document.getElementById('redfish0'), {
+			start:0,
+			duration:viewHeight()*1.2,
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*10)*60)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-10)*20)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var fishSwim1 = scroll.addFlag(document.getElementById('redfish1'), {
+			start:0,
+			duration:viewHeight()*1.2,
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*12)*52)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-12)*18)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var fishSwim2 = scroll.addFlag(document.getElementById('redfish2'), {
+			start:100,
+			duration:(viewHeight()*1.2)+100,
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*8)*58)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-8)*28)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+				
+		var fishSwim3 = scroll.addFlag(document.getElementById('bluefish0'), {
+			start:260,
+			duration:(viewHeight()*1.2)+100,
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*12)*60)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-12)*30)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var fishSwim4 = scroll.addFlag(document.getElementById('bluefish1'), {
+			start:310,
+			duration:(viewHeight()*1.2)+100,
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*9.7)*60)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-9.7)*30)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var fishSwim5 = scroll.addFlag(document.getElementById('bluefish2'), {
+			start:360,
+			duration:(viewHeight()*1.2)+100,
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*9)*60)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-9)*30)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var fishSwim6 = scroll.addFlag(document.getElementById('bluefish3'), {
+			start:160,
+			duration:(viewHeight()*1.2)+100,
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*7.8)*60)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-7.8)*30)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var fishSwim7 = scroll.addFlag(document.getElementById('redfish3'), {
+			start:460,
+			duration:(viewHeight()*1.2),
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*9.8)*60)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-9.8)*30)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var fishSwim7 = scroll.addFlag(document.getElementById('longfish0'), {
+			start:660,
+			duration:(viewHeight()*1.2),
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*5.8)*60)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-5.8)*30)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var fishSwim7 = scroll.addFlag(document.getElementById('longfish1'), {
+			start:720,
+			duration:(viewHeight()*1.2),
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*6.8)*60)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-6.8)*30)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var fishSwim8 = scroll.addFlag(document.getElementById('pufffish0'), {
+			start:860,
+			duration:(viewHeight()*1.2),
+			callback: (value, target)=>{
+				var v0 = parseFloat(target.getAttribute('startX')), v1 = parseFloat(target.getAttribute('endX'))			
+				var lerp = v0 + value * (v1 - v0)
+				target.style.left = lerp+'%'				
+				target.querySelector('.fish-tail').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*5.2)*60)+'deg)'
+				target.querySelector('.fish-head').style.webkitTransform = 'rotate3d(0,1,0, '+Math.round(Math.sin(value*-5.2)*30)+'deg)'	
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+			
+		var contentUnwrap = scroll.addFlag(document.getElementById('main-content'), {
+			start:(viewHeight()*1.5),
+			duration:viewHeight()*0.5,
+			callback: (value, target)=>{
+				target.style.width = 'calc('+Math.round(value*100)+'vw - 2em)'
+				target.style.height = 'calc('+Math.round(value*80)+'vh)'
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var diveText = scroll.addFlag(document.getElementById('text-1'), {
+			start:(viewHeight()*1.5),
+			duration:500,
+			callback: (value, target)=>{
+				target.style.opacity = value*0.9
+				target.style.fontSize = (value*0.8)+'em'
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var diveTextDown = scroll.addFlag(document.getElementById('text-1'), {
+			start:(viewHeight()*1.5)+500,
+			duration:200,
+			callback: (value, target)=>{
+				target.style.marginTop = (value*25)+'%'
+			},
+			startDirty : true,
+			//debug:true
+		})
+		
+		var lastText = scroll.addFlag(document.getElementById('text-2'), {
+			start:(viewHeight()*2.5),
+			duration:500,
+			callback: (value, target)=>{
+				target.style.opacity = value*0.9
+				target.style.fontSize = (value*0.76)+'em'
+			},
+			startDirty : true,
+			//debug:true
+		})		
+		
+		//https://gist.github.com/blixt/f17b47c62508be59987b
+		/**
+		* Creates a pseudo-random value generator. The seed must be an integer.
+		*
+		* Uses an optimized version of the Park-Miller PRNG.
+		* http://www.firstpr.com.au/dsp/rand31/
+		*/
+		function Random(seed) {
+		  this._seed = seed % 2147483647;
+		  if (this._seed <= 0) this._seed += 2147483646;
+		}
+
+		/**
+		* Returns a pseudo-random value between 1 and 2^32 - 2.
+		*/
+		Random.prototype.next = function () {
+		  return this._seed = this._seed * 16807 % 2147483647;
+		}
+
+		/**
+		* Returns a pseudo-random floating point number in range [0, 1).
+		*/
+		Random.prototype.nextFloat = function (opt_minOrMax, opt_max) {
+		  // We know that result of next() will be 1 to 2147483646 (inclusive).
+		  return (this.next() - 1) / 2147483646;
+		}
+		
+		//Spawn Bubbles
+		var xRange = [-10, 110]
+		var yRange = [(viewHeight()*0.2), (viewHeight()*3.8)]
+		var wiggle = [12, 30]
+		var wiggleSpeeds = [2, 6]
+		
+		var count = 32
+		
+		var ran = new Random(Date.now())
+		
+		const lerpN = (a,b,x)=>{
+			return a + x * (b - a)
+		}
+		
+		var t = document.getElementById('water-base')
+		
+		const bubbleFloat = (value, bubble)=>{
+			bubble.style.opacity = 1.0-value
+			var wiggle = parseFloat(bubble.getAttribute('wiggle'))
+			var speed = parseFloat(bubble.getAttribute('wiggleSpeed'))
+			bubble.style.marginLeft = Math.sin((value*speed))*wiggle+'px'	
+		}
+		
+		for(let i =0; i<count; i++){
+			var bubble = document.createElement('div')
+			bubble.classList.add('bubble')
+			t.appendChild(bubble)
+			
+			var lv = lerpN(xRange[0], xRange[1], ran.nextFloat())
+			var tv = lerpN(yRange[0], yRange[1], ran.nextFloat())
+			
+			bubble.style.left = lv+'%'
+			bubble.style.top = tv+'px'			
+			bubble.setAttribute('wiggle', lerpN(wiggle[0], wiggle[1], ran.nextFloat()))	
+			bubble.setAttribute('wiggleSpeed', lerpN(wiggleSpeeds[0], wiggleSpeeds[1], ran.nextFloat()))	
+			
+			var bf = scroll.addFlag(bubble,{
+			start:tv,
+			duration:viewHeight()+100,
+			callback: bubbleFloat,
+			startDirty : true,
+			//debug:true
+		})
+			
+		}
+	
+			
+	})
+</script>
+</body>
+</html>
