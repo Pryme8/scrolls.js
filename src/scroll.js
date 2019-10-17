@@ -119,7 +119,9 @@ Scroll.Flag = class{
 			hotspot.style.position = 'absolute'
 			hotspot.style.right = 0
 			hotspot.style.width = '200px'
-			hotspot.style.background = 'rgba(255,0,0,0.2)'
+			hotspot.style.zIndex = '10000000'
+			var r = Math.round((Math.random()*255)), g = Math.round((Math.random()*255)), b = Math.round((Math.random()*255))			
+			hotspot.style.background = 'rgba('+r+','+g+','+b+',0.2)'
 			hotspot.style.top = this.range[0]+'px'
 			hotspot.style.height = (this.range[1] - this.range[0])+'px'
 			hotspot.innerHTML = "Flag "+(this.parent.flags.length+1)+" Zone"

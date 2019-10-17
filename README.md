@@ -72,5 +72,14 @@ ___startDirty___:Boolean
 ___debug___:Boolean
 > Creates DOM element to show the flag,  to help with page design.
 
+
+###TODO
+
+- Single Direction Animations
+- Event Listeners for when the Trigger has been entered and left.  Progress is kinda built into the callback structure.
+
 ----
-> Written with [StackEdit](https://stackedit.io/).
+
+> Presented by [DigitalOrigami](https://digitalorigami.io).
+> Created by [Pryme8](http://Pryme8.com).
+> Readme written with [StackEdit](https://stackedit.io/).
