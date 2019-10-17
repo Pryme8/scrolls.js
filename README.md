@@ -3,7 +3,7 @@ Universal DOM Scrolling Animation Callback Engine
 
 ## Download
 You can grab the js file from the __GitHub__ src folder
-[https://raw.githubusercontent.com/Pryme8/scrolls.js/master/src/scroll.js](https://raw.githubusercontent.com/Pryme8/scrolls.js/master/src/scroll.js)
+[https://raw.githubusercontent.com/Pryme8/scrolls.js/master/src/scrolls.js](https://raw.githubusercontent.com/Pryme8/scrolls.js/master/src/scrolls.js)
 
 Do an __CLI__ install
 > npm i @pryme8/scroll.js
@@ -12,9 +12,9 @@ This is not for running on a node, but rather should have its src included throu
 
 Get from a CDN
 
-Full [https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scroll.js](https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scroll.js)
+Full [https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scrolls.js](https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scrolls.js)
 
-Min [https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scroll.min.js](https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scroll.min.js)
+Min [https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scrolls.min.js](https://cdn.jsdelivr.net/npm/@pryme8/scroll.js/src/scrolls.min.js)
 
 
 ## Installation
