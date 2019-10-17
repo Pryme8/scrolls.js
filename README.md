@@ -81,5 +81,7 @@ ___debug___:Boolean
 ----
 
 > Presented by [DigitalOrigami](https://digitalorigami.io).
+
 > Created by [Pryme8](http://Pryme8.com).
+
 > Readme written with [StackEdit](https://stackedit.io/).
