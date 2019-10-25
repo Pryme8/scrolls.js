@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>scroll.js - Babylon JS Example 2</title>
+  <meta name="description" content="scroll.js - Basic Example">
+  <meta name="author" content="Pryme8">
+  <style>
+	html, body {
+	  min-height: 100%;
+	  padding: 0;
+	  margin: 0;
+	  -webkit-box-sizing: border-box;
+	  box-sizing: border-box;
+	}
+
+	body *, body *:before, body *:after {
+	  -webkit-box-sizing: inherit;
+	  box-sizing: inherit;
+	}  
+	
+	.section{
+		display:block;
+		position:relative;
+		width:100%;
+	}
+	
+	.canvas-wrap{
+		position:fixed;
+		left:0;
+		top:0;
+		width:100%;
+		height:100vh;
+	}
+	
+	#renderCanvas {
+            width   : 100%;
+            height  : 100%;
+            touch-action: none;
+    }
+	
+	.abs-center{
+		position:absolute;
+		left:50%;
+		top:50%;
+		-webkit-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+
+  </style>
+  <script src="https://cdn.babylonjs.com/babylon.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@pryme8/scrolls.js/src/scrolls.min.js"></script>
+</head>
+<body>
+
+
+	<div class='canvas-wrap'>	
+		 <canvas id="renderCanvas"></canvas>
+	</div>
+	
+	<div class='section' style='height:100vh;'>
+		<div class='abs-center' id='center-text' style='font-size:64px;color:white;width:100%;text-align:center;'>
+			BJS Example 2
+		</div>
+	</div>
+	
+	<div class='section' style='height:1000px;'>
+
+	</div>
+	
+<script>
+	window.addEventListener('DOMContentLoaded', ()=>{		
+		//Create Scroll
+		let scroll = new Scroll()
+		console.log("Scroll Started!", scroll)
+		
+		//DEFAULT BJS SCENE
+		// get the canvas DOM element
+            var canvas = document.getElementById('renderCanvas');
+            // load the 3D engine
+            var engine = new BABYLON.Engine(canvas, true);
+            // createScene function that creates and return the scene
+            var createScene = function(){
+                // create a basic BJS Scene object
+                var scene = new BABYLON.Scene(engine);
+                // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
+                var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-10), scene);
+                // target the camera to scene origin
+                camera.setTarget(BABYLON.Vector3.Zero());
+                // attach the camera to the canvas
+                camera.attachControl(canvas, false);
+                // create a basic light, aiming 0,1,0 - meaning, to the sky
+                var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);		
+                // create a built-in "sphere" shape; its constructor takes 6 params: name, segment, diameter, scene, updatable, sideOrientation 
+                var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
+				//there are other ways to do this:
+				scene.sphere = sphere;
+                // move the sphere upward 1/2 of its height
+                sphere.position.y = 1;
+                // create a built-in "ground" shape;
+                var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
+                // return the created scene
+                return scene;
+            }
+
+		// call the createScene function
+		var scene = createScene();
+
+		// run the render loop
+		engine.runRenderLoop(function(){
+			scene.render();
+		});
+
+		// the canvas/window resize event handler
+		window.addEventListener('resize', function(){
+			engine.resize();
+		});
+		
+		
+		//Create Scroll
+		var flag = scroll.addFlag(scene, {
+			start:0,
+			duration:1000,
+			callback: (value, target)=>{
+				target.sphere.position.x = -5 + (value * 10)
+				target.activeCamera.setTarget(target.sphere.position)
+			},
+			startDirty : true,
+			debug:true
+		})
+		
+		var flag2 = scroll.addFlag(document.getElementById('center-text'), {
+			start:0,
+			duration:600,
+			callback: (value, target)=>{
+				target.style.marginTop = (value*600)+'px'
+				target.style.opacity = 1-value
+			},
+			startDirty : true,
+			debug:true
+		})
+		
+			
+	})
+</script>
+</body>
+</html>
