@@ -7,12 +7,9 @@ class Scroll{
 		this._dead = false
 		this.start()
 	}
+	
 	scrollTop(){
-<<<<<<< Updated upstream
-		return Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
-=======
 		return (this._target)?Math.max(this._target.scrollTop, this._target.scrollTop):Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
->>>>>>> Stashed changes
 	}
 	
 	addFlag(target, args = {}){
