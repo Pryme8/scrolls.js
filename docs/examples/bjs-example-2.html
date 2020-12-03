@@ -40,7 +40,7 @@
     }
 	
 	.abs-center{
-		position:absolute;
+		position: fixed;
 		left:50%;
 		top:50%;
 		-webkit-transform: translate(-50%, -50%);
@@ -117,31 +117,36 @@
 			engine.resize();
 		});
 		
-		
 		//Create Scroll
 		var flag = scroll.addFlag(scene, {
-			start:0,
-			duration:1000,
+			start:0, //starts animating at a scroll value of 0
+			duration:1000, //ends animating at a scroll value of 1000
 			callback: (value, target)=>{
+				//In this case the target is the BJS scene as passed with the first param of the addFlag method.
 				target.sphere.position.x = -5 + (value * 10)
 				target.activeCamera.setTarget(target.sphere.position)
-			},
-			startDirty : true,
-			debug:true
+			}, //Animate any param by passing a target and defining what to do. value is the 0-1 transition value of the flag.
+			startDirty : true, //Have the system update the flag once on initialization
+			debug:true //Show the side div of the triggers zone.
 		})
-		
+
+		let getHalfHeight = ()=>{
+			return (document.getElementById('center-text').parentNode.getBoundingClientRect().height*0.5)
+		}
 		var flag2 = scroll.addFlag(document.getElementById('center-text'), {
-			start:0,
-			duration:600,
+			start:600,
+			duration:400,
 			callback: (value, target)=>{
-				target.style.marginTop = (value*600)+'px'
+				//Element is fixed at the center of the screen.  Its parent object is 100vh, 100vw, so we know if we want to scroll it out of view
+				//we just subtract the sum of its height and the parents half height times our transition value.
+				let yOff = (document.getElementById('center-text').getBoundingClientRect().height+getHalfHeight())*value
+				target.style.marginTop = `-${yOff}px`
+				//Inverse of the animations value applied to the opacity to fade out the object.
 				target.style.opacity = 1-value
 			},
 			startDirty : true,
 			debug:true
-		})
-		
-			
+		})			
 	})
 </script>
 </body>
