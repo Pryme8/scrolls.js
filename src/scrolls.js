@@ -1,22 +1,23 @@
 "use strict"; 
 
 class Scroll{
-	constructor(){
+	constructor(target = null){
 		this._lastPos = 0
 		this._flags = []
 		this._dead = false
+		this._target = target
 		this.start()
 	}
+
 	scrollTop(){
-		return Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
+		return (this._target)?this._target:Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
 	}
 	
 	addFlag(target, args = {}){
 		console.log(args)
 		let flag = new Scroll.Flag(target, args, this)
 		this.flags.push(flag)
-		return flag
-		
+		return flag		
 	}
 	
 	checkFlags(){
