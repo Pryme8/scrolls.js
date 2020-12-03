@@ -8,11 +8,14 @@ class Scroll{
 		this.start()
 	}
 	scrollTop(){
+<<<<<<< Updated upstream
 		return Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
+=======
+		return (this._target)?Math.max(this._target.scrollTop, this._target.scrollTop):Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
+>>>>>>> Stashed changes
 	}
 	
 	addFlag(target, args = {}){
-		console.log(args)
 		let flag = new Scroll.Flag(target, args, this)
 		this.flags.push(flag)
 		return flag
@@ -96,7 +99,7 @@ Scroll.Flag = class{
 		this._target = target
 		args.start = args.start || 0
 		args.duration = args.duration || 0
-		args.callback = args.callback || function(value, target){console.log(value, target)}
+		args.callback = args.callback || function(value, target){}
 		args.debug = args.debug || false
 		this._args = args;
 		this._range = new Array(2)
@@ -108,8 +111,7 @@ Scroll.Flag = class{
 		if(!args.startDirty){
 			this._dirty = false	
 		}else{
-			this._dirty = true
-			console.log('flagStartDirty!')
+			this._dirty = true			
 			this.update()
 		}
 		
