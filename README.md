@@ -8,7 +8,7 @@ You can grab the js file from the __GitHub__ src folder
 [https://raw.githubusercontent.com/Pryme8/scrolls.js/master/src/scrolls.js](https://raw.githubusercontent.com/Pryme8/scrolls.js/master/src/scrolls.js)
 
 Do an __CLI__ install
-> npm i @pryme8/scroll.js
+> npm i @pryme8/scrolls.js
 
 This is not for running on a node, but rather should have its src included through the following install directions.
 
